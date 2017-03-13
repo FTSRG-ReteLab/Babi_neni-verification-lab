@@ -25,10 +25,33 @@ public class TrainSensorTest {
     }
 
     @Test
-    public void _1() {
+    public void Unit_SpeedTest_AlarmTrue1() {
+        sensor.overrideSpeedLimit(100);
+        sensor.overrideSpeedLimit(25);
 
-        Assert.assertEquals(10, controller.getReferenceSpeed());
+        Assert.assertEquals(true, user.getAlarmFlag());
     }
+
+    @Test
+    public void Unit_SpeedTest_AlarmTrue2() {
+        sensor.overrideSpeedLimit(-1);
+        Assert.assertEquals(true, user.getAlarmFlag());
+    }
+
+    @Test
+    public void Unit_SpeedTest_AlarmTrue3() {
+        sensor.overrideSpeedLimit(501);
+        Assert.assertEquals(true, user.getAlarmFlag());
+    }
+
+    @Test
+    public void Unit_SpeedTest_AlarmFalse() {
+        sensor.overrideSpeedLimit(100);
+        sensor.overrideSpeedLimit((int)(100*0.51));
+
+        Assert.assertEquals(false, user.getAlarmFlag());
+    }
+
 
 
 }
