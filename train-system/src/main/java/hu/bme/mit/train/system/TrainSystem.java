@@ -7,6 +7,8 @@ import hu.bme.mit.train.interfaces.TrainUser;
 import hu.bme.mit.train.sensor.TrainSensorImpl;
 import hu.bme.mit.train.user.TrainUserImpl;
 
+import java.util.Timer;
+
 public class TrainSystem {
 
 	private TrainController controller = new TrainControllerImpl();
@@ -23,6 +25,26 @@ public class TrainSystem {
 
 	public TrainUser getUser() {
 		return user;
+	}
+
+	Runnable TrainRunner = new Runnable(){
+		public void run(){
+			while(true) {
+				controller.followSpeed();
+				try {
+					Thread.sleep(100);
+				}
+				catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	};
+
+	public void run() {
+		Thread thread = new Thread(TrainRunner);
+		thread.start();
+
 	}
 
 }
