@@ -4,4 +4,6 @@ subprojects {
   repositories {
     jcenter()
   }
+
+  dependencies { testCompile "org.mockito:mockito-core:2.0.57-beta" }
 }
