@@ -22,7 +22,6 @@ public class TrainSensorTest {
 
     @Test
     public void Unit_SpeedTest_AlarmTrue1() {
-        when(user.getAlarmState()).thenReturn(true);
         sensor.overrideSpeedLimit(25);
 
         Assert.assertEquals(true, user.getAlarmState());
