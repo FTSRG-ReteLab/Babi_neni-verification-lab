@@ -13,6 +13,8 @@ public class TrainSystem implements Runnable {
 	private TrainUser user = new TrainUserImpl(controller);
 	private TrainSensor sensor = new TrainSensorImpl(controller, user);
 
+    private boolean isStopped = false;
+
 	public TrainController getController() {
 		return controller;
 	}
@@ -26,13 +28,18 @@ public class TrainSystem implements Runnable {
 	}
 
 	public void run() {
-        controller.followSpeed();
-        try {
-			Thread.sleep(100);
-		}
-		catch (InterruptedException e) {
-        	e.printStackTrace();
-		}
+        while(!isStopped) {
+            controller.followSpeed();
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 	}
+
+	public void stopThread(boolean isStopped){
+        this.isStopped = isStopped;
+    }
 
 }
