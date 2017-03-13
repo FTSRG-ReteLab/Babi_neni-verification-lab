@@ -26,7 +26,7 @@ public class TrainSensorImpl implements TrainSensor {
             user.setAlarmState(true);
         }
 
-        if ( speedLimit * 2 < this.speedLimit){
+        if ( speedLimit * 2 < controller.getReferenceSpeed()){
             user.setAlarmState(true);
         }
 

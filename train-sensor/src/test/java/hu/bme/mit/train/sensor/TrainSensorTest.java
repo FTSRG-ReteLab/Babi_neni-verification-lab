@@ -24,6 +24,7 @@ public class TrainSensorTest {
     public void Unit_SpeedTest_AlarmTrue1() {
         when(controller.getReferenceSpeed()).thenReturn(100);
         sensor.overrideSpeedLimit(25);
+
         Assert.assertEquals(true, user.getAlarmState());
         verify(user, times(1)).setAlarmState(true);
     }
@@ -37,6 +38,7 @@ public class TrainSensorTest {
 
     @Test
     public void Unit_SpeedTest_AlarmTrue3() {
+        when(user.getAlarmState()).thenReturn(true);
         sensor.overrideSpeedLimit(501);
         Assert.assertEquals(true, user.getAlarmState());
         verify(user, times(1)).setAlarmState(true);
@@ -44,8 +46,8 @@ public class TrainSensorTest {
 
     @Test
     public void Unit_SpeedTest_AlarmFalse() {
-        when(controller.getReferenceSpeed()).thenReturn(100);
-        sensor.overrideSpeedLimit((int)(controller.getReferenceSpeed()*0.53));
+        when(user.getAlarmState()).thenReturn(false);
+        sensor.overrideSpeedLimit((int)(100*0.53));
         Assert.assertEquals(false, user.getAlarmState());
         verify(user, times(0)).setAlarmState(false);
     }
