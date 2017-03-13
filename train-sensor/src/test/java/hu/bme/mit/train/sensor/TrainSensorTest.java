@@ -13,7 +13,7 @@ public class TrainSensorTest {
     }
 
     @Test
-    public void ThisIsAnExampleTestStub() {
+    public void thisIsAnExampleTestStub() {
         // TODO Delete this and add test cases based on the issues
     }
 }
