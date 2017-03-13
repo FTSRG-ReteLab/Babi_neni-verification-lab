@@ -27,7 +27,12 @@ public class TrainSystem implements Runnable {
 
 	public void run() {
         controller.followSpeed();
-		Thread.sleep(100);
+        try {
+			Thread.sleep(100);
+		}
+		catch (InterruptedException e) {
+        	e.printStackTrace();
+		}
 	}
 
 }
